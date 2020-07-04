@@ -18,6 +18,7 @@ class _MyAppState extends State<MyApp> {
         backgroundColor: Colors.teal,
         body: SafeArea(
           child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
             children: <Widget>[
               CircleAvatar(
                 backgroundImage: AssetImage('images/#1.jpg'),
@@ -39,6 +40,13 @@ class _MyAppState extends State<MyApp> {
                     fontSize: 20,
                     letterSpacing: 2.5,
                     fontWeight: FontWeight.bold),
+              ),
+              SizedBox(
+                height: 20.0,
+                width: 150,
+                child: Divider(
+                  color: Colors.white,
+                ),
               ),
               Card(
                 margin: EdgeInsets.symmetric(vertical: 10.0, horizontal: 25.0),
