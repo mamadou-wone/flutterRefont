@@ -1,90 +1,68 @@
+import 'dart:math';
+
 import 'package:flutter/material.dart';
 
 void main() {
-  runApp(MyApp());
-}
-
-class MyApp extends StatefulWidget {
-  @override
-  _MyAppState createState() => _MyAppState();
-}
-
-class _MyAppState extends State<MyApp> {
-  @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
+  return runApp(
+    MaterialApp(
       debugShowCheckedModeBanner: false,
       home: Scaffold(
-        backgroundColor: Colors.teal,
-        body: SafeArea(
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: <Widget>[
-              CircleAvatar(
-                backgroundImage: AssetImage('images/#1.jpg'),
-                radius: 50.0,
-              ),
-              Text(
-                'Mamadou WONE',
-                style: TextStyle(
-                    fontFamily: 'Pacifico',
-                    color: Colors.white,
-                    fontWeight: FontWeight.bold,
-                    fontSize: 40.0),
-              ),
-              Text(
-                'FLUTTER DEVELOPER',
-                style: TextStyle(
-                    fontFamily: 'SourceSansPro',
-                    color: Colors.teal.shade100,
-                    fontSize: 20,
-                    letterSpacing: 2.5,
-                    fontWeight: FontWeight.bold),
-              ),
-              SizedBox(
-                height: 20.0,
-                width: 150,
-                child: Divider(
-                  color: Colors.white,
-                ),
-              ),
-              Card(
-                margin: EdgeInsets.symmetric(vertical: 10.0, horizontal: 25.0),
-                child: ListTile(
-                  leading: Icon(
-                    Icons.phone,
-                    color: Colors.teal,
-                  ),
-                  title: Text(
-                    '+221 77 472 41 75',
-                    style: TextStyle(
-                      color: Colors.teal.shade900,
-                      fontFamily: 'SourceSansPro',
-                      fontSize: 20.0,
-                    ),
-                  ),
-                ),
-              ),
-              Card(
-                margin: EdgeInsets.symmetric(vertical: 10.0, horizontal: 25.0),
-                child: ListTile(
-                  leading: Icon(
-                    Icons.email,
-                    color: Colors.teal,
-                  ),
-                  title: Text(
-                    'm.wone472@email.com',
-                    style: TextStyle(
-                      fontFamily: 'SourceSansPro',
-                      fontSize: 20,
-                    ),
-                  ),
-                ),
-              ),
-            ],
-          ),
+        backgroundColor: Colors.red,
+        appBar: AppBar(
+          title: Text('Dicee'),
+          backgroundColor: Colors.red,
+          centerTitle: true,
         ),
+        body: DicePage(),
       ),
+    ),
+  );
+}
+
+class DicePage extends StatefulWidget {
+  @override
+  _DicePageState createState() => _DicePageState();
+}
+
+class _DicePageState extends State<DicePage> {
+  List<String> DiceNumber = [
+    'dice1.png',
+    'dice2.png',
+    'dice3.png',
+    'dice4.png',
+    'dice5.png',
+    'dice6.png'
+  ];
+
+  var diceNumberGenerate = new Random();
+  var diceNumberGenerate2 = new Random();
+
+  String diceImage = 'dice1.png';
+  String diceImage2 = 'dice1.png';
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      child: Center(
+          child: GestureDetector(
+        child: Row(
+          children: <Widget>[
+            Padding(padding: EdgeInsets.all(10.0)),
+            Expanded(
+              child: Image.asset('images/' + diceImage),
+            ),
+            Padding(padding: EdgeInsets.all(5.0)),
+            Expanded(
+              child: Image.asset('images/' + diceImage2),
+            ),
+          ],
+        ),
+        onTap: () {
+          setState(() {
+            diceImage = DiceNumber[diceNumberGenerate.nextInt(6)];
+            diceImage2 = DiceNumber[diceNumberGenerate2.nextInt(6)];
+          });
+        },
+      )),
     );
   }
 }
