@@ -49,13 +49,13 @@ class _DicePageState extends State<DicePage> {
             Expanded(
               child: Padding(
                 child: Image.asset('images/' + diceImage),
-                padding: EdgeInsets.all(16.0),
+                padding: EdgeInsets.all(15.0),
               ),
             ),
             Expanded(
               child: Padding(
                 child: Image.asset('images/' + diceImage2),
-                padding: EdgeInsets.all(16.0),
+                padding: EdgeInsets.all(15.0),
               ),
             ),
           ],
