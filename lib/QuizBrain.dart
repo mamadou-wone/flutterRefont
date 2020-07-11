@@ -1,10 +1,9 @@
 import 'package:MagicBall/Question.dart';
 
 class QuizBrain {
-  List<Question> questionBank = [
-    Question(
-        questionText: 'Some cats are actually allergic to humans',
-        questionAnswer: true),
+  int _questionIndex = 0;
+
+  List<Question> _questionBank = [
     Question(
         questionText: 'Some cats are actually allergic to humans',
         questionAnswer: true),
@@ -50,4 +49,20 @@ class QuizBrain {
             'In West Virginia, USA, if you accidentally hit an animal with your car, you are free to take it home to eat.',
         questionAnswer: true),
   ];
+
+  void nextQuestion() {
+    if (_questionIndex < _questionBank.length - 1) {
+      _questionIndex++;
+    }
+    print(_questionIndex);
+    print(_questionBank.length);
+  }
+
+  String getQuestionText() {
+    return _questionBank[_questionIndex].questionText;
+  }
+
+  bool getQuestionAnswer() {
+    return _questionBank[_questionIndex].questionAnswer;
+  }
 }
