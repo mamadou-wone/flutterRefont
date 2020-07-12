@@ -30,7 +30,7 @@ class QuizPage extends StatefulWidget {
 
 class _QuizPageState extends State<QuizPage> {
   List<Icon> scoreKeeper = [];
-
+// Today I just help Thioro to lear flutter so just keep going
   // String question =  questions[questionIndex];
   @override
   Widget build(BuildContext context) {
