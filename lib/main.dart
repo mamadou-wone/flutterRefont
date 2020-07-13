@@ -1,6 +1,7 @@
 import 'package:MagicBall/Question.dart';
 import 'package:MagicBall/QuizBrain.dart';
 import 'package:flutter/material.dart';
+import 'package:rflutter_alert/rflutter_alert.dart';
 
 QuizBrain quizBrain = QuizBrain();
 void main() => runApp(Quizzler());
@@ -32,6 +33,31 @@ class _QuizPageState extends State<QuizPage> {
   List<Icon> scoreKeeper = [];
 // Today I just help Thioro to lear flutter so just keep going
   // String question =  questions[questionIndex];
+  void checkAnswer(bool checkAnswer) {
+    bool correctAnswer = quizBrain.getQuestionAnswer();
+    setState(() {
+      quizBrain.nextQuestion();
+      quizBrain.getQuestionText();
+      if (checkAnswer == correctAnswer) {
+        scoreKeeper.add(
+          Icon(
+            Icons.check,
+            color: Colors.green,
+          ),
+        );
+        print('correct');
+      } else {
+        print('False');
+        scoreKeeper.add(
+          Icon(
+            Icons.close,
+            color: Colors.red,
+          ),
+        );
+      }
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -69,25 +95,31 @@ class _QuizPageState extends State<QuizPage> {
               ),
               onPressed: () {
                 //The user picked true.
-                bool correctAnswer = quizBrain.getQuestionAnswer();
-                if (correctAnswer == true) {
-                  print('correct');
-                } else {
-                  print('False');
-                }
-                setState(() {
-                  quizBrain.nextQuestion();
-                  quizBrain.getQuestionText();
-                  scoreKeeper.add(
-                    Icon(
-                      Icons.check,
-                      color: Colors.green,
-                    ),
-                  );
-                });
+                checkAnswer(true);
               },
             ),
           ),
+        ),
+        FlatButton(
+          child: Icon(Icons.ac_unit),
+          onPressed: () {
+            Alert(
+              context: context,
+              type: AlertType.error,
+              title: "RFLUTTER ALERT",
+              desc: "Flutter is more awesome with RFlutter Alert.",
+              buttons: [
+                DialogButton(
+                  child: Text(
+                    "COOL",
+                    style: TextStyle(color: Colors.white, fontSize: 20),
+                  ),
+                  onPressed: () => Navigator.pop(context),
+                  width: 120,
+                )
+              ],
+            ).show();
+          },
         ),
         Expanded(
           child: Padding(
@@ -103,22 +135,7 @@ class _QuizPageState extends State<QuizPage> {
               ),
               onPressed: () {
                 //The user picked false.
-                bool correctAnswer = quizBrain.getQuestionAnswer();
-                if (correctAnswer == true) {
-                  print('false');
-                } else {
-                  print('Correct');
-                }
-                setState(() {
-                  quizBrain.nextQuestion();
-                  quizBrain.getQuestionText();
-                  scoreKeeper.add(
-                    Icon(
-                      Icons.close,
-                      color: Colors.red,
-                    ),
-                  );
-                });
+                checkAnswer(false);
               },
             ),
           ),
