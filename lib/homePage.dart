@@ -8,30 +8,99 @@ class HomePage extends StatefulWidget {
 class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
-    return Center(
-      child: Stack(
-        children: <Widget>[
-          Container(
-            width: 250.0,
-            height: 250.0,
-            color: Colors.white,
-          ),
-          Container(
-            padding: EdgeInsets.all(5.0),
-            alignment: Alignment.bottomCenter,
-            decoration: BoxDecoration(
-              gradient: LinearGradient(
-                begin: Alignment.topCenter,
-                end: Alignment.bottomCenter,
-                colors: <Color>[
-                  Colors.black.withAlpha(0),
-                  Colors.black12,
-                  Colors.black45
-                ],
-              ),
+    return Scaffold(
+      appBar: AppBar(
+        title: Text('Test'),
+      ),
+      body: Center(
+        child: Column(
+          children: <Widget>[
+            Text('MWONE'),
+            Text(
+              'lorem ipsum dolor sit amet, consectetur adipiscing elit. integer posuere erat a ante traduction',
+              style: TextStyle(fontSize: 20.0),
             ),
-          ),
-        ],
+            Row(
+              children: <Widget>[
+                Row(
+                  children: <Widget>[
+                    Padding(padding: EdgeInsets.all(25.0)),
+                    Icon(
+                      Icons.star,
+                      color: Colors.teal,
+                      size: 25.0,
+                    ),
+                    Icon(
+                      Icons.star,
+                      color: Colors.teal,
+                      size: 25.0,
+                    ),
+                    Icon(
+                      Icons.star,
+                      color: Colors.teal,
+                      size: 25.0,
+                    ),
+                    Icon(
+                      Icons.star,
+                      color: Colors.teal,
+                      size: 25.0,
+                    ),
+                    Icon(
+                      Icons.star,
+                      color: Colors.teal,
+                      size: 25.0,
+                    ),
+                  ],
+                ),
+                Padding(padding: EdgeInsets.all(20.0)),
+                Text('Nouveau Text'),
+              ],
+            ),
+            Row(
+              children: <Widget>[
+                Column(
+                  children: <Widget>[
+                    Padding(padding: EdgeInsets.all(20.0)),
+                    Icon(Icons.home),
+                    Row(
+                      children: <Widget>[
+                        Text('Text1'),
+                        Icon(Icons.access_alarm),
+                      ],
+                    ),
+                    Text('Text2'),
+                  ],
+                ),
+                Column(
+                  children: <Widget>[
+                    Padding(padding: EdgeInsets.all(20.0)),
+                    Icon(Icons.home),
+                    Row(
+                      children: <Widget>[
+                        Text('Text1'),
+                        Icon(Icons.access_alarm),
+                      ],
+                    ),
+                    Text('Text2'),
+                  ],
+                ),
+                Column(
+                  children: <Widget>[
+                    Padding(padding: EdgeInsets.all(20.0)),
+                    Icon(Icons.home),
+                    Row(
+                      children: <Widget>[
+                        Text('Text1'),
+                        Icon(Icons.access_alarm),
+                      ],
+                    ),
+                    Text('Text2'),
+                  ],
+                ),
+              ],
+            ),
+          ],
+        ),
       ),
     );
   }
