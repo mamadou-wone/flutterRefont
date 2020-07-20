@@ -1,4 +1,3 @@
-import 'package:english_words/english_words.dart';
 import 'package:flutter/material.dart';
 
 void main() => runApp(MyApp());
@@ -9,102 +8,136 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      title: 'FriendlyChat',
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
         primaryColor: Colors.red,
       ),
-      home: Training(),
+      home: ChatScreen(),
     );
   }
 }
 
-class Training extends StatefulWidget {
+class ChatMessage extends StatelessWidget {
+  ChatMessage({this.text, this.animationController});
+  final String text;
+  final AnimationController animationController;
+
+  String _name = 'Mamadou WONE';
   @override
-  _TrainingState createState() => _TrainingState();
+  Widget build(BuildContext context) {
+    return Container(
+      child: Row(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Container(
+            margin: const EdgeInsets.only(right: 16.0),
+            child: CircleAvatar(child: Text(_name[0])),
+          ),
+          Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Text(_name, style: Theme.of(context).textTheme.headline4),
+              Container(
+                margin: EdgeInsets.only(top: 5.0),
+                child: Text(text),
+              ),
+            ],
+          ),
+        ],
+      ),
+    );
+  }
 }
 
-class _TrainingState extends State<Training> {
-  final _suggestions = <WordPair>[];
-  final _biggerFont = TextStyle(fontSize: 18.0);
-  final _saved = Set<WordPair>();
+class ChatScreen extends StatefulWidget {
+  @override
+  _ChatScreenState createState() => _ChatScreenState();
+}
 
-  void _pushSaved() {
-    Navigator.of(context).push(
-      MaterialPageRoute(builder: (BuildContext context) {
-        final tiles = _saved.map((WordPair pair) {
-          return ListTile(
-            title: Text(
-              pair.asPascalCase,
-              style: _biggerFont,
+class _ChatScreenState extends State<ChatScreen> with TickerProviderStateMixin {
+  final _textController = TextEditingController();
+  final FocusNode _focusNode = FocusNode();
+  final List<ChatMessage> _messages = [];
+
+  Widget _buildTextComposer() {
+    return Container(
+      margin: EdgeInsets.symmetric(horizontal: 8.0),
+      child: Row(
+        children: <Widget>[
+          Flexible(
+            child: TextField(
+              controller: _textController,
+              onSubmitted: _handleSubmitted,
+              decoration: InputDecoration.collapsed(hintText: 'Send a message'),
+              focusNode: _focusNode,
             ),
-          );
-        });
-        final divided = ListTile.divideTiles(
-          context: context,
-          tiles: tiles,
-        ).toList();
-        return Scaffold(
-          appBar: AppBar(
-            title: Text('Saved Suggestions'),
           ),
-          body: ListView(children: divided),
-        );
-      }),
+          IconTheme(
+            data: IconThemeData(color: Theme.of(context).primaryColor),
+            child: Container(
+              margin: EdgeInsets.symmetric(horizontal: 4.0),
+              child: IconButton(
+                  icon: const Icon(Icons.send),
+                  onPressed: () => _handleSubmitted(_textController.text)),
+            ),
+          ),
+        ],
+      ),
     );
   }
 
-  Widget _buildSeggestion() {
-    return ListView.builder(
-        padding: EdgeInsets.all(16.0),
-        itemBuilder: /*1*/ (context, i) {
-          if (i.isOdd) return Divider(); /*2*/
-
-          final index = i ~/ 2; /*3*/
-          if (index >= _suggestions.length) {
-            _suggestions.addAll(generateWordPairs().take(10)); /*4*/
-          }
-          return GestureDetector(
-            child: _buildRow(_suggestions[index]),
-            onTap: () {
-              print(_suggestions[index]);
-            },
-          );
-        });
-  }
-
-  Widget _buildRow(WordPair pair) {
-    final alreadySaved = _saved.contains(pair);
-    return ListTile(
-      title: Text(
-        pair.asPascalCase,
-        style: _biggerFont,
+  void _handleSubmitted(String text) {
+    _textController.clear();
+    ChatMessage message = ChatMessage(
+      text: text,
+      animationController: AnimationController(
+        duration: const Duration(milliseconds: 700),
+        vsync: this,
       ),
-      trailing: Icon(
-        alreadySaved ? Icons.favorite : Icons.favorite_border,
-        color: alreadySaved ? Colors.red : null,
-      ),
-      onTap: () {
-        setState(() {
-          if (alreadySaved) {
-            _saved.remove(pair);
-          } else {
-            _saved.add(pair);
-          }
-        });
-      },
     );
+    setState(() {
+      _messages.insert(0, message);
+    });
+    _focusNode.requestFocus();
+    message.animationController.forward();
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('EnglishWORD'),
-        actions: [
-          IconButton(icon: Icon(Icons.list), onPressed: _pushSaved),
+        title: Text('FriendlyChat'),
+      ),
+      body: Column(
+        children: <Widget>[
+          Flexible(
+            child: ListView.builder(
+              padding: EdgeInsets.all(8.0),
+              reverse: true,
+              itemBuilder: (_, int index) => _messages[index],
+              itemCount: _messages.length,
+            ),
+          ),
+          Divider(height: 1.0),
+          SizeTransition(
+            sizeFactor: CurvedAnimation(
+                parent: animationController, curve: Curves.easeOut),
+            axisAlignment: 0.0,
+            child: Container(
+              decoration: BoxDecoration(color: Theme.of(context).cardColor),
+              child: _buildTextComposer(),
+            ),
+          ),
         ],
       ),
-      body: _buildSeggestion(),
     );
+  }
+
+  @override
+  void dispose() {
+    for (ChatMessage message in _messages)
+      message.animationController.dispose();
+    super.dispose();
   }
 }
