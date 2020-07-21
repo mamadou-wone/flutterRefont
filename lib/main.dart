@@ -133,6 +133,7 @@ class _ChatScreenState extends State<ChatScreen> with TickerProviderStateMixin {
       ),
     );
   }
+  // Journéé null
 
   @override
   void dispose() {
