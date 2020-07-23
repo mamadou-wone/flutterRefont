@@ -1,5 +1,6 @@
 import 'package:TrainingApp/CountrieCases.dart';
 import 'package:TrainingApp/Covid.dart';
+import 'package:TrainingApp/Test.dart';
 import 'package:flutter/material.dart';
 
 void main() => runApp(MyApp());
@@ -15,7 +16,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primaryColor: Colors.red,
       ),
-      home: CountrieCases(),
+      home: Test(),
     );
   }
 }

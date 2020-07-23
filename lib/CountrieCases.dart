@@ -51,7 +51,7 @@ class _CountrieCasesState extends State<CountrieCases> {
           future: futureCases,
           builder: (context, snapshot) {
             if (snapshot.hasData) {
-              var test = snapshot.data[0].country;
+              // var test = snapshot.data[0].country;
               return Text(
                 'TEST',
                 // ignore: unnecessary_brace_in_string_interps
