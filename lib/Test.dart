@@ -1,4 +1,6 @@
-import 'package:TrainingApp/CustumButton.dart';
+import 'package:TrainingApp/CustumWidgets/CustumAppBar.dart';
+import 'package:TrainingApp/CustumWidgets/CustumBottomBar.dart';
+import 'package:TrainingApp/CustumWidgets/CustumButton.dart';
 import 'package:flutter/material.dart';
 
 class Test extends StatefulWidget {
@@ -7,28 +9,28 @@ class Test extends StatefulWidget {
 }
 
 class _TestState extends State<Test> {
+  // int _selectedIndex = 0;
+
+  // void _onItemTapped(int index) {
+  //   setState(() {
+  //     _selectedIndex = index;
+  //   });
+  // }
+
   @override
   Widget build(BuildContext context) {
+    double screenWidth = MediaQuery.of(context).size.width;
+    double screenHeigth = MediaQuery.of(context).size.height;
     return Scaffold(
-      appBar: AppBar(
-        title: Text('Vroom Vroom'),
-        centerTitle: true,
-        leading: Icon(Icons.share),
-        backgroundColor: Colors.blueGrey[600],
-        actions: <Widget>[
-          IconButton(
-              icon: Icon(
-                Icons.settings,
-                color: Colors.white,
-              ),
-              onPressed: null),
-        ],
-      ),
-      floatingActionButton: CustumButton(
-        onPressed: () {
-          print('test');
-        },
-      ),
-    );
+        appBar: CustumAppBar(
+          context: context,
+          widthScreen: screenWidth,
+          heightScreen: screenHeigth,
+        ),
+        floatingActionButton: CustumButton(onPressed: () {}),
+        bottomNavigationBar: CustomBottomBar(
+            context: context,
+            heightScrenn: screenHeigth,
+            widthScreen: screenWidth));
   }
 }
