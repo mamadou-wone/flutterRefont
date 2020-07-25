@@ -22,15 +22,22 @@ class _TestState extends State<Test> {
     double screenWidth = MediaQuery.of(context).size.width;
     double screenHeigth = MediaQuery.of(context).size.height;
     return Scaffold(
-        appBar: CustumAppBar(
+      appBar: CustumAppBar(
+        context: context,
+        widthScreen: screenWidth,
+        heightScreen: screenHeigth,
+      ),
+      floatingActionButton: CustumButton(onPressed: () {}),
+      bottomNavigationBar: CustomBottomBar(
           context: context,
-          widthScreen: screenWidth,
-          heightScreen: screenHeigth,
+          heightScrenn: screenHeigth,
+          widthScreen: screenWidth),
+      body: Center(
+        child: Text(
+          'TEST',
+          style: TextStyle(fontSize: 30.0),
         ),
-        floatingActionButton: CustumButton(onPressed: () {}),
-        bottomNavigationBar: CustomBottomBar(
-            context: context,
-            heightScrenn: screenHeigth,
-            widthScreen: screenWidth));
+      ),
+    );
   }
 }

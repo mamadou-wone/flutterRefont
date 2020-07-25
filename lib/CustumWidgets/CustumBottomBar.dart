@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../Test.dart';
+import '../test.dart';
 
 class CustomBottomBar extends StatefulWidget {
   final BuildContext context;
@@ -31,12 +31,14 @@ class _CustomBottomBarState extends State<CustomBottomBar> {
   void _onItemTapped(int index) {
     setState(() {
       _selectedIndex = index;
+      // print(_selectedIndex);
       switch (index) {
         case 0:
           Navigator.pushReplacementNamed(context, "/home");
           break;
         case 1:
           Navigator.pushReplacementNamed(context, "/test");
+          print(_selectedIndex + 1);
           break;
         // default:
       }
@@ -59,12 +61,28 @@ class _CustomBottomBarState extends State<CustomBottomBar> {
     return BottomNavigationBar(
       items: <BottomNavigationBarItem>[
         BottomNavigationBarItem(
-          icon: Icon(Icons.home),
-          title: Text('Home'),
+          icon: Icon(
+            Icons.home,
+            color: Colors.amber[800],
+          ),
+          title: Text(
+            'Home',
+            style: TextStyle(
+              color: Colors.amber[800],
+            ),
+          ),
         ),
         BottomNavigationBarItem(
-          icon: Icon(Icons.favorite),
-          title: Text('Favories'),
+          icon: Icon(
+            Icons.favorite,
+            color: Colors.amber[800],
+          ),
+          title: Text(
+            'Favories',
+            style: TextStyle(
+              color: Colors.amber[800],
+            ),
+          ),
         ),
       ],
       currentIndex: _selectedIndex,
