@@ -1,0 +1,32 @@
+{
+    "project_info": {
+        "project_number": "462048418750",
+        "firebase_url": "https://babyboom-73777.firebaseio.com",
+        "project_id": "babyboom-73777",
+        "storage_bucket": "babyboom-73777.appspot.com"
+    },
+    "client": [{
+        "client_info": {
+            "mobilesdk_app_id": "1:462048418750:android:0bc899d8adea0b6006f7ef",
+            "android_client_info": {
+                "package_name": "com.example.appbreweryFlutter"
+            }
+        },
+        "oauth_client": [{
+            "client_id": "462048418750-cpiqv2c4gk7vhv92glfdukquik81v395.apps.googleusercontent.com",
+            "client_type": 3
+        }],
+        "api_key": [{
+            "current_key": "AIzaSyA1X983QYAcQZX6LHVu00fqZkfw4gUtYlY"
+        }],
+        "services": {
+            "appinvite_service": {
+                "other_platform_oauth_client": [{
+                    "client_id": "462048418750-cpiqv2c4gk7vhv92glfdukquik81v395.apps.googleusercontent.com",
+                    "client_type": 3
+                }]
+            }
+        }
+    }],
+    "configuration_version": "1"
+}

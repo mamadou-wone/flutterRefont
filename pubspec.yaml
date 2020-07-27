@@ -16,6 +16,8 @@ dependencies:
   english_words: ^3.1.5
   page_transition: ^1.1.6
   splashscreen: ^1.2.0
+  cloud_firestore: ^0.13.7
+  firebase_core_web: ^0.1.1+2
   # audioplayers: ^0.15.1
   # rflutter_alert: ^1.0.3
   http: ^0.12.2
