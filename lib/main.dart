@@ -95,9 +95,9 @@ class _MyHomePageState extends State<MyHomePage> {
   }
 }
 
-// NULL
+// NULL null
 class Record {
-  final int test;
+  // final int test;
   final String name;
   final int votes;
   final DocumentReference reference;
