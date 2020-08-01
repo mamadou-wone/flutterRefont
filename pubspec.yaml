@@ -18,6 +18,9 @@ dependencies:
   splashscreen: ^1.2.0
   cloud_firestore: ^0.13.7
   firebase_core_web: ^0.1.1+2
+  google_sign_in: ^4.5.1
+  firebase_storage: ^3.1.6
+  firebase_auth: ^0.16.1
   # audioplayers: ^0.15.1
   # rflutter_alert: ^1.0.3
   http: ^0.12.2
