@@ -1,23 +1,21 @@
-import 'package:TrainingApp/brew/screens/authenticate/authenticate.dart';
 import 'package:TrainingApp/services/auth.dart';
 import 'package:flutter/material.dart';
 
-class SignIn extends StatefulWidget {
+class Register extends StatefulWidget {
   final Function toggleView;
-  SignIn({this.toggleView});
+  Register({this.toggleView});
   @override
-  _SignInState createState() => _SignInState();
+  _RegisterState createState() => _RegisterState();
 }
 
-class _SignInState extends State<SignIn> {
+class _RegisterState extends State<Register> {
   final AuthService _auth = AuthService();
   final _formKey = GlobalKey<FormState>();
-  String error = '';
 
   // TextField State
   String email = '';
   String password = '';
-
+  String error = '';
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -25,7 +23,7 @@ class _SignInState extends State<SignIn> {
       appBar: AppBar(
         backgroundColor: Colors.brown[400],
         elevation: 0.0,
-        title: Text('Sign in to Brew Crew'),
+        title: Text('Sign up to Brew Crew'),
         actions: <Widget>[
           FlatButton.icon(
             icon: Icon(
@@ -33,7 +31,7 @@ class _SignInState extends State<SignIn> {
               color: Colors.white,
             ),
             label: Text(
-              'register',
+              'Sign In',
               style: TextStyle(color: Colors.white),
             ),
             onPressed: () {
@@ -63,9 +61,9 @@ class _SignInState extends State<SignIn> {
                 height: 20.0,
               ),
               TextFormField(
+                obscureText: true,
                 validator: (value) =>
                     value.length < 6 ? 'Enter a password 6 + chars long' : null,
-                obscureText: true,
                 onChanged: (value) {
                   setState(() {
                     password = value;
@@ -78,16 +76,16 @@ class _SignInState extends State<SignIn> {
               RaisedButton(
                 color: Colors.pink[400],
                 child: Text(
-                  'Sign in',
+                  'Register',
                   style: TextStyle(color: Colors.white),
                 ),
                 onPressed: () async {
-                  dynamic result =
-                      await _auth.signInWithEmailAndPassword(email, password);
                   if (_formKey.currentState.validate()) {
+                    dynamic result = await _auth.registerWithEmailAndPassword(
+                        email, password);
                     if (result == null) {
                       setState(() {
-                        error = 'could not sign with those credentials';
+                        error = 'Please suply a valid email';
                       });
                     }
                   }
@@ -104,22 +102,6 @@ class _SignInState extends State<SignIn> {
           ),
         ),
       ),
-      // Sign in anon
-      //  Container(
-      //   padding: EdgeInsets.symmetric(vertical: 20.0, horizontal: 50.0),
-      //   child: RaisedButton(
-      //     child: Text('Sign in onon'),
-      //     onPressed: () async {
-      //       dynamic result = await _auth.signInAnon();
-      //       if (result == null) {
-      //         print('Error sign in');
-      //       } else {
-      //         print('Sign In');
-      //         print(result.uid);
-      //       }
-      //     },
-      //   ),
-      // ),
     );
   }
 }

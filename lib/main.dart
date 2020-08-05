@@ -1,7 +1,5 @@
-import 'package:TrainingApp/brew/screens/authenticate/authenticate.dart';
 import 'package:TrainingApp/brew/screens/wrapper.dart';
 import 'package:TrainingApp/services/auth.dart';
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
