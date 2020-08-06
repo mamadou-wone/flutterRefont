@@ -1,5 +1,7 @@
 import 'package:TrainingApp/brew/screens/authenticate/authenticate.dart';
+import 'package:TrainingApp/brew/screens/home/home.dart';
 import 'package:TrainingApp/services/auth.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
 class SignIn extends StatefulWidget {
@@ -99,6 +101,34 @@ class _SignInState extends State<SignIn> {
               Text(
                 error,
                 style: TextStyle(color: Colors.red, fontSize: 14.0),
+              ),
+              SizedBox(
+                height: 20.0,
+              ),
+              Container(
+                padding: EdgeInsets.all(10),
+                child: Align(
+                  alignment: Alignment.center,
+                  child: FlatButton(
+                    shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(20)),
+                    onPressed: () async {},
+                    color: Colors.blueAccent,
+                    child: Padding(
+                      padding: EdgeInsets.all(10),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        crossAxisAlignment: CrossAxisAlignment.center,
+                        children: <Widget>[
+                          Icon(Icons.account_circle, color: Colors.white),
+                          SizedBox(width: 10),
+                          Text('Login with Google',
+                              style: TextStyle(color: Colors.white))
+                        ],
+                      ),
+                    ),
+                  ),
+                ),
               ),
             ],
           ),
